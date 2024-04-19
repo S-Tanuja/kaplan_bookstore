@@ -6,14 +6,15 @@
 
     <div class="books-container">
         <div class="books-label">Books</div>
-        <div> <button mat-flat-button color="primary" class="button-label">Create New Book</button>
+        <div> <button mat-flat-button color="primary" class="button-label" (click)="createBook()">Create New
+                Book</button>
         </div>
     </div>
 
-    <div class="search-container">
-        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="search"></mat-icon>
-        <div class="search-label">Search</div>
-    </div>
+    <mat-form-field class="search-field">
+        <mat-icon matSuffix>search</mat-icon>
+        <input matInput placeholder="Search" class="search-input" [formControl]="searchTerm" (ngModelChange)="filterBooks(searchTerm)">
+    </mat-form-field>
 
     <div class="books-list">
         <div class="all-books-heading">All Books</div>
@@ -21,7 +22,7 @@
             <div class="each-book-container" *ngFor="let book of booksArray">
                 <div class="book-heading">{{book.volumeInfo.title}}</div>
                 <div>
-                    <div class="book-info">Authors: {{book.volumeInfo.authors[1]}} </div>
+                    <div class="book-info">Authors: {{book.volumeInfo.authors.join(', ')}} </div>
                     <div class="book-info">Publisher: {{book.volumeInfo.publisher}}</div>
                     <div class="book-info">Published Date: {{book.volumeInfo.publishedDate}}</div>
                 </div>

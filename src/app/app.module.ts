@@ -14,6 +14,11 @@ import { SideNavBarComponent } from './components/side-nav-bar/side-nav-bar.comp
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { BooksService } from './books.service';
+import { CreateBookComponent } from './components/create-book/create-book.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -24,19 +29,24 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     AppComponent,
     BooksListComponent,
     MainPageComponent,
-    SideNavBarComponent
+    SideNavBarComponent,
+    CreateBookComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MatIconModule,
     MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  // MatSidenavModule,
-  // MatListModule,
-  // MatToolbarModule
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    BooksService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,33 @@
+<h2 mat-dialog-title class="create-book-title">CREATE BOOK</h2>
+<div mat-dialog-content [formGroup]="bookForm">
+ <div class="form-field">
+    <mat-form-field class="form-field">
+        <input matInput placeholder="Book Title" formControlName="title">
+        <mat-error *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched">Book Title is required</mat-error>
+      </mat-form-field>
+ </div>
+  <div class="form-field">
+    <mat-form-field class="form-field">
+        <input matInput placeholder="Authors" formControlName="authors">
+        <mat-error *ngIf="bookForm.get('authors')?.invalid && bookForm.get('authors')?.touched">Authors are required</mat-error>
+      </mat-form-field>
+  </div>
+ <div class="form-field">
+    <mat-form-field class="form-field">
+        <input matInput placeholder="Publisher" formControlName="publisher">
+        <mat-error *ngIf="bookForm.get('publisher')?.invalid && bookForm.get('publisher')?.touched">Publisher is required</mat-error>
+      </mat-form-field>
+ </div>
+  <div class="form-field">
+    <mat-form-field class="form-field">
+        <input matInput type="date" placeholder="Published Date" formControlName="publishedDate">
+        <mat-error *ngIf="bookForm.get('publishedDate')?.invalid && bookForm.get('publishedDate')?.touched">Published Date is required</mat-error>
+      </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions class="flex-buttons">
+    <button mat-flat-button color="primary"  (click)="onSave()">Save</button>
+    <button mat-raised-button (click)="onClose()">Close</button>
+</div>
+
+

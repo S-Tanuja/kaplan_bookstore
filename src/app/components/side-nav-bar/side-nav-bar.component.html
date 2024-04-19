@@ -1,13 +1,23 @@
-<!-- <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #sidenav class="sidenav" mode="side">
-      <mat-nav-list>
-        <a mat-list-item routerLink="/">Home</a>
-        <a mat-list-item routerLink="/about">About</a>
-       
-      </mat-nav-list>
-    </mat-sidenav>
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  </mat-sidenav-container> -->
+<!-- app.component.html -->
+<div class="toolbar">
+    <mat-toolbar>
+        <button mat-icon-button (click)="toggleSideNav()">
+          <mat-icon>menu</mat-icon>
+          <!-- <span>Menu</span> -->
+        </button>
+      </mat-toolbar>
+      <mat-toolbar>
+        <button mat-icon-button (click)="toggleSideNav()">
+          <mat-icon>home</mat-icon>
+          <!-- <span>Home</span> -->
+        </button>
+      </mat-toolbar>
+      <mat-toolbar>
+        <button mat-icon-button (click)="toggleSideNav()">
+          <mat-icon>settings</mat-icon>
+          <!-- <span>Settings</span> -->
+        </button>
+      </mat-toolbar>
+</div>
+  
   

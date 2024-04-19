@@ -8,6 +8,10 @@ import { Component, Input } from '@angular/core';
   styleUrl: './side-nav-bar.component.scss'
 })
 export class SideNavBarComponent {
- 
+  isSideNavOpen = false;
+
+  toggleSideNav() {
+    this.isSideNavOpen = !this.isSideNavOpen;
+  }
 
 }

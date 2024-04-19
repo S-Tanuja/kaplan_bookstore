@@ -1,0 +1,29 @@
+.create-book-title {
+    color: blue;
+    padding:10px;
+  }
+  
+  .form-field {
+    margin-bottom: 15px;
+    mat-form-field{
+        input{
+            width: 90%;
+            padding: 10px;
+            margin: 5px
+        }
+    }
+  }
+  
+  mat-error {
+    color: red;
+    font-size: 12px;
+    padding: 10px;
+  }
+
+  .flex-buttons{
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding: 10px;
+  }
+  
