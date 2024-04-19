@@ -17,8 +17,8 @@ booksArray !: any;
 searchTerm = new FormControl('');
 constructor(private booksService: BooksService,private dialog: MatDialog){
   this.searchTerm.valueChanges.pipe(
-    debounceTime(300), // debounce input changes
-    distinctUntilChanged() // emit only distinct values
+    debounceTime(300), 
+    distinctUntilChanged() 
   ).subscribe((value: string | null) => {
     if (value !== null) {
       this.filterBooks(value)
