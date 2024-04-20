@@ -8,7 +8,6 @@ import { BooksListComponent } from './components/books-list/books-list.component
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SideNavBarComponent } from './components/side-nav-bar/side-nav-bar.component';
 
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -19,6 +18,10 @@ import { BooksService } from './books.service';
 import { CreateBookComponent } from './components/create-book/create-book.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './reducers';
+// import { createBook } from './createbook.actions'; 
+import { createBookReducer } from './createbook.reducers';
 
 
 @NgModule({
@@ -28,7 +31,6 @@ import { MatDialogModule } from '@angular/material/dialog';
   declarations: [
     AppComponent,
     BooksListComponent,
-    MainPageComponent,
     SideNavBarComponent,
     CreateBookComponent
   ],
@@ -42,7 +44,11 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatToolbarModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({createBook: createBookReducer }),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+    })
   ],
   providers: [
     provideAnimationsAsync(),

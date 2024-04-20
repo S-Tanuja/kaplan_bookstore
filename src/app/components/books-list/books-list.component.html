@@ -19,7 +19,7 @@
     <div class="books-list">
         <div class="all-books-heading">All Books</div>
         <div class="books-wrap">
-            <div class="each-book-container" *ngFor="let book of booksArray">
+            <div class="each-book-container" *ngFor="let book of filteredBooks">
                 <div class="book-heading">{{book.volumeInfo.title}}</div>
                 <div>
                     <div class="book-info">Authors: {{book.volumeInfo.authors.join(', ')}} </div>
