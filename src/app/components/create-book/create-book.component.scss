@@ -1,5 +1,5 @@
 .create-book-title {
-    color: blue;
+    color:  #3f51b5;
     padding:10px;
   }
   
@@ -7,9 +7,10 @@
     margin-bottom: 15px;
     mat-form-field{
         input{
-            width: 90%;
+            width: 92%;
             padding: 10px;
-            margin: 5px
+            margin: 5px;
+            border-radius: 5px;
         }
     }
   }

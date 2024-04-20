@@ -1,23 +1,42 @@
-<!-- app.component.html -->
-<div class="toolbar">
-    <mat-toolbar>
-        <button mat-icon-button (click)="toggleSideNav()">
-          <mat-icon>menu</mat-icon>
-          <!-- <span>Menu</span> -->
-        </button>
-      </mat-toolbar>
-      <mat-toolbar>
-        <button mat-icon-button (click)="toggleSideNav()">
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <div class="nav-button">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <div class="button-content">
+          <mat-icon>notes</mat-icon>
+          <span>Menu</span>
+        </div>
+      </button>
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <div class="button-content">
           <mat-icon>home</mat-icon>
-          <!-- <span>Home</span> -->
-        </button>
-      </mat-toolbar>
-      <mat-toolbar>
-        <button mat-icon-button (click)="toggleSideNav()">
+          <span>Content Management</span>
+        </div>
+      </button>
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <div class="button-content">
           <mat-icon>settings</mat-icon>
-          <!-- <span>Settings</span> -->
-        </button>
-      </mat-toolbar>
-</div>
+          <span>Courses</span>
+        </div>
+      </button>
+    </div>   
+  </mat-drawer>
+
+  <div class="sidenav-content">
+    <div class="nav-button"  [class.hide-when-drawer-open]="drawer.opened">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>notes</mat-icon>
+      </button>
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>contentmanagement</mat-icon>
+      </button>
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>courses</mat-icon>
+      </button>
+    </div>
+    <app-books-list></app-books-list>
+  </div>
+
+</mat-drawer-container>
   
   

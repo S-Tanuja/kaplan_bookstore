@@ -4,8 +4,8 @@ import { SideNavBarComponent } from './components/side-nav-bar/side-nav-bar.comp
 import { MainPageComponent } from './pages/main-page/main-page.component';
 
 const routes: Routes = [
-  {path:'',component:MainPageComponent},
-  {path:'home-page',component:MainPageComponent}
+  {path:'',component:SideNavBarComponent},
+  {path:'home-page',component:SideNavBarComponent}
 ];
 
 @NgModule({

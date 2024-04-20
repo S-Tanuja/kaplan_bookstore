@@ -13,7 +13,7 @@
 
     <mat-form-field class="search-field">
         <mat-icon matSuffix>search</mat-icon>
-        <input matInput placeholder="Search" class="search-input" [formControl]="searchTerm" (ngModelChange)="filterBooks(searchTerm)">
+        <input matInput placeholder="Search" class="search-input" [(ngModel)]="searchTerm" (ngModelChange)="filterBooks(searchTerm)">
     </mat-form-field>
 
     <div class="books-list">

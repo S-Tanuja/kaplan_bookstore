@@ -7,11 +7,4 @@ import { Component, Input } from '@angular/core';
   templateUrl: './side-nav-bar.component.html',
   styleUrl: './side-nav-bar.component.scss'
 })
-export class SideNavBarComponent {
-  isSideNavOpen = false;
-
-  toggleSideNav() {
-    this.isSideNavOpen = !this.isSideNavOpen;
-  }
-
-}
+export class SideNavBarComponent {}

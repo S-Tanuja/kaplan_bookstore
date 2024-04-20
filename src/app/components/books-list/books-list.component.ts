@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateBookComponent } from '../create-book/create-book.component';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-books-list',
@@ -12,36 +13,20 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 })
 export class BooksListComponent implements OnInit {
 booksArray !: any;
-// searchTerm : string = '' 
+searchTerm : string = '' 
 
-searchTerm = new FormControl('');
-constructor(private booksService: BooksService,private dialog: MatDialog){
-  this.searchTerm.valueChanges.pipe(
-    debounceTime(300), 
-    distinctUntilChanged() 
-  ).subscribe((value: string | null) => {
-    if (value !== null) {
-      this.filterBooks(value)
-    } else {
-      alert('No results found')
-    }
-  });
-}
+constructor(private booksService: BooksService,private dialog: MatDialog){}
 
 ngOnInit(): void {
-  this.filterBooks('')
+  this.booksService.getBooks().subscribe((res)=>{
+    this.booksArray=res
+  })
 }
 
 filterBooks(query:string){
-  if (!this.booksArray) {
-    return; 
-  }
-
   this.booksArray = this.booksArray.filter((book:any) =>
-    (book.title && book.title.toLowerCase().includes(query.toLowerCase()))
+      (book.volumeInfo.title.toLowerCase().includes(query.toLowerCase()))
   );
-
-
 }
 
 createBook(): void {

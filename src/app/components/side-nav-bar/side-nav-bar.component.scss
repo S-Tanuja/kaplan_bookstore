@@ -1,6 +1,32 @@
-.toolbar{
+.container {
+    width: 100vw;
     height: 100vh;
-    // width: 20vw;
-    background-color: whitesmoke
+    border: 1px solid rgba(0, 0, 0, 0.5);
 }
-  
+
+.sidenav-content {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.nav-button {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    border-right: 1px lightgrey;
+    button{
+        color: gray;
+        margin: 10px 0px;
+    }
+    .button-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        color: gray
+    }
+}
+
+.hide-when-drawer-open {
+    display: none;
+}
