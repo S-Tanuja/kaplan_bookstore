@@ -9,7 +9,7 @@ export class BooksService {
 
   books!: any
 
-  private apiUrl = 'https://www.googleapis.com/books/v1/volumes?q=kaplan%20test%20prep';
+  public apiUrl = 'https://www.googleapis.com/books/v1/volumes?q=kaplan%20test%20prep';
 
   constructor(private http: HttpClient) { }
 

@@ -23,6 +23,7 @@ export class BooksListComponent implements OnInit {
     this.booksService.getBooks().subscribe((res) => {
       this.booksArray = res
       this.filteredBooks = this.booksArray
+      console.log(this.booksArray)
     })
   }
 
