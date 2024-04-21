@@ -20,8 +20,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
+import { bookReducer } from './createbook.reducers';
 // import { createBook } from './createbook.actions'; 
-import { createBookReducer } from './createbook.reducers';
+// import { createBookReducer } from './createbook.reducers';
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { createBookReducer } from './createbook.reducers';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    StoreModule.forRoot({createBook: createBookReducer }),
+    StoreModule.forFeature('books', bookReducer),
     StoreModule.forRoot(reducers, {
       metaReducers,
     })

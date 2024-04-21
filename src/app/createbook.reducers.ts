@@ -10,14 +10,40 @@
 // }),
 // );
 
+// import { createReducer, on } from '@ngrx/store';
+// import { increment, decrement, reset } from './createbook.actions';
+
+// export const initialState = 0;
+
+// export const createBookReducer = createReducer(
+//   initialState,
+//   on(increment, (state,x) => state + 1),
+//   on(decrement, (state) => state - 1),
+//   on(reset, (state) => 0)
+// );
+
 import { createReducer, on } from '@ngrx/store';
-import { increment, decrement, reset } from './createbook.actions';
+import { addBook } from './createbook.actions';
 
-export const initialState = 0;
+export interface Book {
+  title: string;
+  author: string;
+}
 
-export const createBookReducer = createReducer(
+export interface BookState {
+  books: Book[];
+}
+
+export const initialState: BookState = {
+  books: []
+};
+
+export const bookReducer = createReducer(
   initialState,
-  on(increment, (state) => state + 1),
-  on(decrement, (state) => state - 1),
-  on(reset, (state) => 0)
+  on(addBook, (state, { title, author }) =>{   
+    console.log(title,author)
+    return{
+    ...state,
+    books: [...state.books, { title, author }]
+  }})
 );

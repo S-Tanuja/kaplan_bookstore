@@ -1,9 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import {  increment } from '../../createbook.actions';
+import {  addBook } from '../../createbook.actions';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { selectBookState } from '../../createbook.selectors';
 
 @Component({
   selector: 'app-create-book',
@@ -12,16 +13,17 @@ import { Observable } from 'rxjs';
 })
 export class CreateBookComponent implements OnInit{
 bookForm !: FormGroup
-count$: Observable<number> ;
-constructor(private stores: Store<{ count: number }>,public dialogRef: MatDialogRef<CreateBookComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private store: Store){
+books$: Observable<any> ;
+constructor(private store: Store<{ count: number }>,public dialogRef: MatDialogRef<CreateBookComponent>,@Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder){
   this.createForm()
-  this.count$ = stores.select('count');
+  this.books$ = this.store.select(selectBookState);
 }
 
 ngOnInit(){
-  this.count$.subscribe((count) => {
-    console.log('Count:', count);
-  });
+  // this.books$.subscribe((count) => {
+  //   console.log('Count:', count);
+  // });
+  // console.log(this.books)
 }
 
 createForm(){
@@ -35,8 +37,10 @@ createForm(){
 
 onSave(){
   console.log(this.bookForm.value)
-  // this.store.dispatch(createBook({value: this.bookForm.value}));
-  this.store.dispatch(increment());
+  this.store.dispatch(addBook({ title:"Abc", author:'xyz' }));
+  this.books$.subscribe((count) => {
+    console.log('Count:', count);
+  });
   this.dialogRef.close();
 }
 onClose(): void {
