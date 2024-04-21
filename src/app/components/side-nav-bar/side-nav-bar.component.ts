@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { BooksService } from '../../books.service';
 
 
 
@@ -7,4 +8,12 @@ import { Component, Input } from '@angular/core';
   templateUrl: './side-nav-bar.component.html',
   styleUrl: './side-nav-bar.component.scss'
 })
-export class SideNavBarComponent {}
+export class SideNavBarComponent{
+  
+  constructor(private cdr: ChangeDetectorRef,public booksService : BooksService) {}
+
+  updateProperty(): void {
+    this.booksService.isLoading = true;
+    this.cdr.detectChanges();
+  }
+}

@@ -9,21 +9,23 @@ import { BooksListComponent } from './components/books-list/books-list.component
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { SideNavBarComponent } from './components/side-nav-bar/side-nav-bar.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BooksService } from './books.service';
 import { CreateBookComponent } from './components/create-book/create-book.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material/dialog';
 import { StoreModule } from '@ngrx/store';
 import { reducers, metaReducers } from './reducers';
 import { bookReducer } from './createbook.reducers';
-// import { createBook } from './createbook.actions'; 
-// import { createBookReducer } from './createbook.reducers';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
+const MatImportsArray = [
+  MatIconModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatProgressSpinnerModule
+]
 
 @NgModule({
   schemas: [
@@ -33,17 +35,16 @@ import { bookReducer } from './createbook.reducers';
     AppComponent,
     BooksListComponent,
     SideNavBarComponent,
-    CreateBookComponent
+    CreateBookComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSidenavModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    ...MatImportsArray,
     StoreModule.forFeature('books', bookReducer),
     StoreModule.forRoot(reducers, {
       metaReducers,

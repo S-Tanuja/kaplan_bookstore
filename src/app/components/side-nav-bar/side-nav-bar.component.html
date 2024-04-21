@@ -1,4 +1,8 @@
-<mat-drawer-container class="container" autosize>
+<div class="spinner-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+{{booksService.isLoading}}
+<mat-drawer-container class="container"  autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
     <div class="nav-button">
       <button type="button" mat-button (click)="drawer.toggle()">

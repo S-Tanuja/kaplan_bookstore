@@ -1,33 +1,11 @@
-// import {  createReducer, on } from '@ngrx/store';
-// import { createBook } from './createbook.actions';
 
-// export const initialState = 0;
-
-// export const createBookReducer = createReducer(
-//   initialState,
-//   on(createBook, (state: any, formValue:any) => {
-//     return state
-// }),
-// );
-
-// import { createReducer, on } from '@ngrx/store';
-// import { increment, decrement, reset } from './createbook.actions';
-
-// export const initialState = 0;
-
-// export const createBookReducer = createReducer(
-//   initialState,
-//   on(increment, (state,x) => state + 1),
-//   on(decrement, (state) => state - 1),
-//   on(reset, (state) => 0)
-// );
 
 import { createReducer, on } from '@ngrx/store';
 import { addBook } from './createbook.actions';
+import { book } from './interface';
 
-export interface Book {
-  title: string;
-  author: string;
+interface Book {
+  title: book[];
 }
 
 export interface BookState {
@@ -40,10 +18,11 @@ export const initialState: BookState = {
 
 export const bookReducer = createReducer(
   initialState,
-  on(addBook, (state, { title, author }) =>{   
-    console.log(title,author)
-    return{
-    ...state,
-    books: [...state.books, { title, author }]
-  }})
+  on(addBook, (state, { booksArray, formValue }) => {
+    const newBook: Book = { title: [...booksArray, formValue] };
+    return {
+      ...state,
+      books: [...state.books, newBook]
+    };
+  })
 );

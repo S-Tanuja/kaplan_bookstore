@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import {  addBook } from '../../createbook.actions';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, count } from 'rxjs';
 import { selectBookState } from '../../createbook.selectors';
 
 @Component({
@@ -20,10 +20,7 @@ constructor(private store: Store<{ count: number }>,public dialogRef: MatDialogR
 }
 
 ngOnInit(){
-  // this.books$.subscribe((count) => {
-  //   console.log('Count:', count);
-  // });
-  // console.log(this.books)
+  this.createForm()
 }
 
 createForm(){
@@ -36,12 +33,10 @@ createForm(){
 }
 
 onSave(){
-  console.log(this.bookForm.value)
-  this.store.dispatch(addBook({ title:"Abc", author:'xyz' }));
-  this.books$.subscribe((count) => {
-    console.log('Count:', count);
+  this.store.dispatch(addBook({ booksArray:this.data, formValue:this.bookForm.value }));
+  this.books$.subscribe((books) => {
+    this.dialogRef.close(books);
   });
-  this.dialogRef.close();
 }
 onClose(): void {
   this.dialogRef.close();

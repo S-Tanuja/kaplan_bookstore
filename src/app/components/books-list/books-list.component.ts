@@ -1,16 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { BooksService } from '../../books.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateBookComponent } from '../create-book/create-book.component';
+import { book, volumeInfo } from '../../interface';
 
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
   styleUrl: './books-list.component.scss'
 })
+
 export class BooksListComponent implements OnInit {
-  booksArray !: any;
-  filteredBooks!: any;
+  booksArray !: book[];
+  filteredBooks!: book[] ;
   searchTerm: string = ''
 
   constructor(private booksService: BooksService, private dialog: MatDialog) { }
@@ -19,11 +21,20 @@ export class BooksListComponent implements OnInit {
     this.getAllBooks()
   }
 
+  updateLoading(value: boolean): void {
+    this.booksService.setLoading(value);
+  }
+
   getAllBooks() {
+    this.updateLoading(true)
     this.booksService.getBooks().subscribe((res) => {
       this.booksArray = res
       this.filteredBooks = this.booksArray
-      console.log(this.booksArray)
+      this.updateLoading(false)
+    },
+    (error) => {
+      this.updateLoading(false)
+      console.error('Error fetching data:', error);
     })
   }
 
@@ -39,9 +50,11 @@ export class BooksListComponent implements OnInit {
       height: '65%',
       data: this.booksArray
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      if (this.filteredBooks.length < result.books[0]?.title.length && result.books[0].title) {
+        const updatedarray = result.books[0]?.title
+        this.filteredBooks = updatedarray;
+      }
     });
   }
 }
