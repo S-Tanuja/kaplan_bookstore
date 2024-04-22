@@ -1,5 +1,3 @@
-
-
 import { createReducer, on } from '@ngrx/store';
 import { addBook } from './createbook.actions';
 import { book } from './interface';
@@ -22,7 +20,7 @@ export const bookReducer = createReducer(
     const newBook: Book = { title: [...booksArray, formValue] };
     return {
       ...state,
-      books: [...state.books, newBook]
+      books: [newBook]
     };
   })
 );

@@ -3,6 +3,8 @@ import { BooksService } from '../../books.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateBookComponent } from '../create-book/create-book.component';
 import { book, volumeInfo } from '../../interface';
+import { addBook } from '../../createbook.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-books-list',
@@ -15,7 +17,7 @@ export class BooksListComponent implements OnInit {
   filteredBooks!: book[] ;
   searchTerm: string = ''
 
-  constructor(private booksService: BooksService, private dialog: MatDialog) { }
+  constructor(private booksService: BooksService, private dialog: MatDialog,private store: Store<{ count: number }>) { }
 
   ngOnInit(): void {
     this.getAllBooks()
@@ -48,12 +50,13 @@ export class BooksListComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateBookComponent, {
       width: '50%',
       height: '65%',
-      data: this.booksArray
+      data: this.filteredBooks
     });
     dialogRef.afterClosed().subscribe(result => {
-      if (this.filteredBooks.length < result.books[0]?.title.length && result.books[0].title) {
-        const updatedarray = result.books[0]?.title
+      if (this.filteredBooks.length) {
+        const updatedarray = result?.books[0]?.title
         this.filteredBooks = updatedarray;
+        this.store.dispatch(addBook({ booksArray:this.filteredBooks }));
       }
     });
   }

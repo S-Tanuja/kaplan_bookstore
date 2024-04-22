@@ -5,5 +5,9 @@ export interface volumeInfo {
     title:string
   }
   export interface book {
+    title?:string
+    authors ?:string
+    publisher ?: string
+    publishedDate ?: string
     volumeInfo: volumeInfo
   }

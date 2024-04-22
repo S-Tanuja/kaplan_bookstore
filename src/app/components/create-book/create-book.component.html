@@ -27,7 +27,7 @@
   </div>
 </div>
 <div mat-dialog-actions class="flex-buttons">
-    <button mat-flat-button color="primary"  (click)="onSave()">Save</button>
+    <button mat-flat-button color="primary" (click)="onSave()" [disabled]="bookForm.invalid">Save</button>
     <button mat-raised-button (click)="onClose()">Close</button>
 </div>
 
