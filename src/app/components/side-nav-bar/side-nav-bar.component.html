@@ -1,8 +1,7 @@
 <div class="spinner-container" *ngIf="loader">
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
-{{booksService.getLoading()}}
-{{loader}}
+
 <mat-drawer-container class="container" *ngIf="!loader" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
     <div class="nav-button">
