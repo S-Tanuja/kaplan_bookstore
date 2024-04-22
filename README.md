@@ -14,7 +14,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - The `search bar` gives you the results filtered based on the search query or the keywords.
 - It also provides a button labeled `Create Book` where the user can add the desired book to the list of books.
 - The Save button within the dialog doesn't get enabled until all the field are provided by the user.
-- If any path is given manually which doesn't match the flow of appication then a clear message is displayed to the user `Page Not Found,   Reload`.
+- Exhibiting usage of `state management` i.e., Ngrx to store list of books and then updating the existing array in Store when new book is added.
+- If any path is given manually which doesn't match the flow of appication then a clear message is displayed to the user `Page Not Found,   Reload` i.e.,`Error handling`
 - A loader is added to the application if the api response is delayed.
 - The side bar mentions the other facilities provided by Kaplan.
 
