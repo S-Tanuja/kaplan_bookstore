@@ -5,6 +5,7 @@ import { CreateBookComponent } from '../create-book/create-book.component';
 import { book, volumeInfo } from '../../interface';
 import { addBook } from '../../createbook.actions';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-books-list',
@@ -17,7 +18,7 @@ export class BooksListComponent implements OnInit {
   filteredBooks!: book[] ;
   searchTerm: string = ''
 
-  constructor(private booksService: BooksService, private dialog: MatDialog,private store: Store<{ count: number }>) { }
+  constructor(private router: Router, private booksService: BooksService, private dialog: MatDialog,private store: Store<{ count: number }>) { }
 
   ngOnInit(): void {
     this.getAllBooks()
@@ -30,13 +31,13 @@ export class BooksListComponent implements OnInit {
   getAllBooks() {
     this.updateLoading(true)
     this.booksService.getBooks().subscribe((res) => {
+      this.updateLoading(false)
       this.booksArray = res
       this.filteredBooks = this.booksArray
-      this.updateLoading(false)
     },
     (error) => {
-      this.updateLoading(false)
-      console.error('Error fetching data:', error);
+      this.updateLoading(false);
+      this.router.navigate(['/**']);
     })
   }
 

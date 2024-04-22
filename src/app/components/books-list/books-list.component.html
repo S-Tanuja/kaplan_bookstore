@@ -23,11 +23,11 @@
         <div class="all-books-heading">All Books</div>
         <div class="books-wrap">
             <div class="each-book-container" *ngFor="let book of filteredBooks">
-                <div class="book-heading">{{book.volumeInfo?.title || book?.title || ' ---'}}</div>
+                <div class="book-heading">{{book.volumeInfo.title || book?.title || ' ---'}}</div>
                 <div>
-                    <div class="book-info">Authors: {{book.volumeInfo?.authors?.join(', ') || book?.authors|| ' ---'}} </div>
-                    <div class="book-info">Publisher: {{book.volumeInfo?.publisher || book?.publisher|| ' ---'}}</div>
-                    <div class="book-info">Published Date: {{book.volumeInfo?.publishedDate || book?.publishedDate|| ' ---'}}</div>
+                    <div class="book-info">Authors: {{book.volumeInfo.authors.join(', ') || book?.authors|| ' ---'}} </div>
+                    <div class="book-info">Publisher: {{book.volumeInfo.publisher || book?.publisher|| ' ---'}}</div>
+                    <div class="book-info">Published Date: {{book.volumeInfo.publishedDate || book?.publishedDate|| ' ---'}}</div>
                 </div>
             </div>
         </div>
