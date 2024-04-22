@@ -8,12 +8,15 @@ import { BooksService } from '../../books.service';
   templateUrl: './side-nav-bar.component.html',
   styleUrl: './side-nav-bar.component.scss'
 })
-export class SideNavBarComponent{
-  
+export class SideNavBarComponent implements OnInit{
+  loader = false
   constructor(private cdr: ChangeDetectorRef,public booksService : BooksService) {}
 
-  updateProperty(): void {
-    this.booksService.isLoading = true;
+  ngOnInit(): void {
+    console.log(this.booksService.getLoading())
+    console.log(this.booksService.getLoading())
+    let val = this.booksService.getLoading()
     this.cdr.detectChanges();
+    if(this.loader != val ) this.loader = this.booksService.getLoading()
   }
 }

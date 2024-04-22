@@ -1,8 +1,9 @@
-<div class="spinner-container">
+<div class="spinner-container" *ngIf="loader">
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
-{{booksService.isLoading}}
-<mat-drawer-container class="container"  autosize>
+{{booksService.getLoading()}}
+{{loader}}
+<mat-drawer-container class="container" *ngIf="!loader" autosize>
   <mat-drawer #drawer class="sidenav" mode="side">
     <div class="nav-button">
       <button type="button" mat-button (click)="drawer.toggle()">
@@ -33,10 +34,10 @@
         <mat-icon>notes</mat-icon>
       </button>
       <button type="button" mat-button (click)="drawer.toggle()">
-        <mat-icon>contentmanagement</mat-icon>
+        <mat-icon>home</mat-icon>
       </button>
       <button type="button" mat-button (click)="drawer.toggle()">
-        <mat-icon>courses</mat-icon>
+        <mat-icon>settings</mat-icon>
       </button>
     </div>
     <app-books-list></app-books-list>
