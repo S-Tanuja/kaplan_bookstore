@@ -9,5 +9,5 @@ export interface volumeInfo {
     authors ?:string
     publisher ?: string
     publishedDate ?: string
-    volumeInfo: volumeInfo
+    volumeInfo ?: volumeInfo
   }
