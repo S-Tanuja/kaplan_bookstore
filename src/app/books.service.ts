@@ -21,6 +21,7 @@ export class BooksService {
   getLoading(): boolean {
     return this.isLoading;
   }
+  
   getBooks() {
     return this.http.get(this.apiUrl).pipe(
       map((response: any) => response.items)

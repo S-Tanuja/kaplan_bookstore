@@ -54,7 +54,6 @@ export class BooksListComponent implements OnInit {
       data: this.filteredBooks
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
       if (result?.books) {
         const updatedarray = result?.books[0]?.title
         this.filteredBooks = updatedarray;

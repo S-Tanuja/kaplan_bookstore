@@ -13,8 +13,6 @@ export class SideNavBarComponent implements OnInit{
   constructor(private cdr: ChangeDetectorRef,public booksService : BooksService) {}
 
   ngOnInit(): void {
-    console.log(this.booksService.getLoading())
-    console.log(this.booksService.getLoading())
     let val = this.booksService.getLoading()
     this.cdr.detectChanges();
     if(this.loader != val ) this.loader = this.booksService.getLoading()
