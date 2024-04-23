@@ -17,7 +17,7 @@
     </mat-form-field>
 
     <div class="books-list">
-        <div class="all-books-heading">All Books</div>
+        <div class="all-books-heading" *ngIf="!noResultsFound">All Books</div>
         <div class="all-books-heading" *ngIf="noResultsFound">No results found</div>
         <div class="books-wrap"  *ngIf="!noResultsFound">
             <div class="each-book-container" *ngFor="let book of filteredBooks">
