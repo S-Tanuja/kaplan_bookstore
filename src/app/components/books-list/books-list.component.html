@@ -18,7 +18,8 @@
 
     <div class="books-list">
         <div class="all-books-heading">All Books</div>
-        <div class="books-wrap">
+        <div class="all-books-heading" *ngIf="noResultsFound">No results found</div>
+        <div class="books-wrap"  *ngIf="!noResultsFound">
             <div class="each-book-container" *ngFor="let book of filteredBooks">
                 <div class="book-heading">{{book.volumeInfo?.title || book?.title || ' ---'}}</div>
                 <div>

@@ -16,7 +16,8 @@ import { Router } from '@angular/router';
 export class BooksListComponent implements OnInit {
   booksArray !: book[];
   filteredBooks!: book[] ;
-  searchTerm: string = ''
+  searchTerm: string = '';
+  noResultsFound: boolean = false;
 
   constructor(private router: Router, private booksService: BooksService, private dialog: MatDialog,private store: Store<{ count: number }>) { }
 
@@ -45,7 +46,9 @@ export class BooksListComponent implements OnInit {
     this.filteredBooks = this.booksArray.filter((book: any) =>
       (book.volumeInfo.title.toLowerCase().includes(query.toLowerCase()))
     );
+    this.noResultsFound = this.filteredBooks.length === 0; 
   }
+  
 
   createBook(): void {
     const dialogRef = this.dialog.open(CreateBookComponent, {
